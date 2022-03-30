@@ -91,8 +91,7 @@ class FunchookConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["funkhook"]
-
+        self.cpp_info.libs = ["funchook"]
         if self.settings.os == "Linux":
             self.cpp_info.system_libs.extend(["m", "dl"])
         elif self.settings.os == "Windows":
