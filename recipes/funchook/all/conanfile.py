@@ -7,7 +7,7 @@ required_conan_version = ">=1.33.0"
 class FunchookConan(ConanFile):
     name = "funchook"
     homepage = "https://github.com/kubo/funchook"
-    description = " Hook function calls by inserting jump instructions at runtime"
+    description = "Hook function calls by inserting jump instructions at runtime"
     topics = ("function", "hooking")
     url = "https://github.com/conan-io/conan-center-index"
     license = "GPL-2.0-or-later-linking-exception"
@@ -17,12 +17,12 @@ class FunchookConan(ConanFile):
     options = {
         "shared": [True, False],
         "fPIC": [True, False],
-        "disassembler": ["diStorm3", "zydis", "capstone"],
+        "disassembler": ["distorm", "zydis", "capstone"],
     }
     default_options = {
         "shared": False,
         "fPIC": True,
-        "disassembler": "diStorm3",
+        "disassembler": "distorm",
     }
 
     _cmake = None
@@ -72,7 +72,7 @@ class FunchookConan(ConanFile):
         self._cmake.definitions["FUNCHOOK_BUILD_TESTS"] = False
         self._cmake.definitions["FUNCHOOK_BUILD_SHARED"] = self.options.shared
         self._cmake.definitions["FUNCHOOK_BUILD_STATIC"] = not self.options.shared
-        if self.options.disassembler == "diStorm3":
+        if self.options.disassembler == "distorm":
             self._cmake.definitions["FUNCHOOK_DISASM"] = "distorm"
         else:
             self._cmake.definitions["FUNCHOOK_DISASM"] = self.options.disassembler
